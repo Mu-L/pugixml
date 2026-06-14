@@ -604,6 +604,7 @@ pre.pygments .tok-il { color: #666 } /* Literal.Number.Integer.Long */
 </li>
 <li><a href="#changes">9. Changelog</a>
 <ul class="sectlevel2">
+<li><a href="#v1.16">v1.16 <sup>2026-06-16</sup></a></li>
 <li><a href="#v1.15">v1.15 <sup>2025-01-10</sup></a></li>
 <li><a href="#v1.14">v1.14 <sup>2023-10-01</sup></a></li>
 <li><a href="#v1.13">v1.13 <sup>2022-11-01</sup></a></li>
@@ -4128,6 +4129,106 @@ If exceptions are disabled, then in the event of parsing failure the query is in
 <h2 id="changes"><a class="anchor" href="#changes"></a><a class="link" href="#changes">9. Changelog</a></h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="v1.16"><a class="anchor" href="#v1.16"></a><a class="link" href="#v1.16">v1.16 <sup>2026-06-16</sup></a></h3>
+<div class="paragraph">
+<p>Anniversary release (pugixml turns 20 this year!). Changes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Behavior changes:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Elements that have a single empty PCDATA child are now printed as empty element tags (unless <code>format_no_empty_element_tags</code> is used)</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Improvements:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>PUGIXML_CHARCONV_FLOAT</code> option can be enabled to switch floating point conversions to <code>&lt;charconv&gt;</code>; this requires C&#43;&#43;17, makes the conversions locale-independent and can improve performance</p>
+</li>
+<li>
+<p>Improve performance of searching for nodes and attributes by name</p>
+</li>
+<li>
+<p>Loading a document from an empty buffer no longer performs memory allocations</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>XPath improvements:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Improve performance of queries that evaluate or compare attribute values, like <code>@attr &gt; 5</code></p>
+</li>
+<li>
+<p>Improve performance of queries that select nodes and attributes by name</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Bug fixes:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fix stack overflow when removing subtrees with extremely deep nesting</p>
+</li>
+<li>
+<p>Fix integer overflows that could lead to crashes when loading very large (1+ GB) documents on 32-bit platforms in <code>PUGIXML_WCHAR_MODE</code></p>
+</li>
+<li>
+<p>Fix null pointer dereference when copying <code>xpath_variable_set</code> objects that contain string variables with unassigned values</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>CMake improvements:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Apple frameworks built with <code>PUGIXML_BUILD_APPLE_FRAMEWORK</code> now include framework headers</p>
+</li>
+<li>
+<p><code>PUGIXML_INSTALL_SOURCE</code> option can be used to install <code>pugixml.cpp</code> (useful for header-only mode)</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Compatibility improvements:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add project files and NuGet packages for Visual Studio 2026</p>
+</li>
+<li>
+<p>Fix compatibility with C&#43;&#43;20 modules when including <code>pugixml.hpp</code> in the global module fragment</p>
+</li>
+<li>
+<p>Fix clang/gcc warnings <code>-Wextra-semi-stmt</code>, <code>-Wsign-conversion</code>, <code>-Wuninitialized</code> (GCC16)</p>
+</li>
+<li>
+<p>Fix compilation for Embarcadero C&#43;&#43; XE5</p>
+</li>
+<li>
+<p>Work around several static analysis false positives</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
 <h3 id="v1.15"><a class="anchor" href="#v1.15"></a><a class="link" href="#v1.15">v1.15 <sup>2025-01-10</sup></a></h3>
 <div class="paragraph">
 <p>Maintenance release. Changes:</p>
@@ -6274,7 +6375,7 @@ If exceptions are disabled, then in the event of parsing failure the query is in
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-06-12 14:24:55 -0700
+Last updated 2026-06-13 16:47:23 -0700
 </div>
 </div>
 </body>
