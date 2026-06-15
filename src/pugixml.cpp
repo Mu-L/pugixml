@@ -6256,6 +6256,22 @@ namespace pugi
 	}
 #endif
 
+	PUGI_IMPL_FN xml_attribute xml_node::ensure_attribute(const char_t* name_)
+	{
+		xml_attribute result = attribute(name_);
+
+		return result ? result : append_attribute(name_);
+	}
+
+#ifdef PUGIXML_HAS_STRING_VIEW
+	PUGI_IMPL_FN xml_attribute xml_node::ensure_attribute(string_view_t name_)
+	{
+		xml_attribute result = attribute(name_);
+
+		return result ? result : append_attribute(name_);
+	}
+#endif
+
 	PUGI_IMPL_FN xml_attribute xml_node::append_copy(const xml_attribute& proto)
 	{
 		if (!proto) return xml_attribute();
@@ -6467,6 +6483,22 @@ namespace pugi
 		result.set_name(name_);
 
 		return result;
+	}
+#endif
+
+	PUGI_IMPL_FN xml_node xml_node::ensure_child(const char_t* name_)
+	{
+		xml_node result = child(name_);
+
+		return result ? result : append_child(name_);
+	}
+
+#ifdef PUGIXML_HAS_STRING_VIEW
+	PUGI_IMPL_FN xml_node xml_node::ensure_child(string_view_t name_)
+	{
+		xml_node result = child(name_);
+
+		return result ? result : append_child(name_);
 	}
 #endif
 
